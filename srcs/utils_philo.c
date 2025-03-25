@@ -16,7 +16,7 @@ t_infos	*ft_infonew(char **argv, int argc)
 	if (argc == 6)
 		infos->max_eat = ft_atoi(argv[5]);
 	infos->state = 0;
-	if (2 * infos->tteat > infos ->ttsleep)
+	if (2 * infos->tteat >= infos->ttsleep)
 		infos->ttthink = infos->tteat * 2 - infos->ttsleep;
 	else
 		infos->ttthink = infos->ttsleep - 2 * infos->tteat;

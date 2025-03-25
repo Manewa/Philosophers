@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:23:55 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/20 16:48:41 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/25 18:26:21 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ static void check_numbers(char **argv)
 
 t_infos	*ft_parsing(int argc, char **argv)
 {
-	size_t	i;
 	t_infos	*infos;
 
-	(void)i;
 	check_numbers(argv);
 	infos = ft_infonew(argv, argc);
 	return (infos);

@@ -6,7 +6,7 @@
 #    By: natgomali <marvin@42.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 16:09:21 by natgomali         #+#    #+#              #
-#    Updated: 2025/03/24 16:43:48 by natgomali        ###   ########.fr        #
+#    Updated: 2025/03/25 18:37:42 by namalier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS 			=	srcs/main.c srcs/parsing.c srcs/utils.c srcs/utils_philo.c\
 
 OBJS 			=	$(patsubst %.c,${OBJDIR}/%.o,$(notdir ${SRCS}))
 
-NAME			=	philosophers
+NAME			=	philo
 
 CFLAGS			=	-Wall -Werror -Wextra -fsanitize=thread -g3
 

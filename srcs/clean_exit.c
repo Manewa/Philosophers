@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:46:59 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/24 16:18:52 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/25 13:44:22 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void ft_clean_philo(t_philo *philo, t_infos *infos)
 		if (pthread_join(philo[i].id, NULL) != 0)
 			write(2, "Error join\n", 11);
 		pthread_mutex_destroy(&philo[i].fork_r);
-		free(&philo[i].fork_r);
 		i++;
 	}
 	free(philo);

@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:04:39 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/24 17:21:04 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/25 20:40:12 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,23 @@ static int	meal_philo_done(t_philo *philo, t_infos *infos)
 
 int check_philo(t_philo *philo, t_infos *infos)
 {
-	long	actual_time;
 	int		full_meal;
 	int		i;
 
 	i = 0;
-	actual_time = ft_time();
+	full_meal = 0;
 	pthread_mutex_lock(&infos->eat_check);
 	while (i < infos->nb_philo)
 	{
 		full_meal += meal_philo_done(&philo[i], infos);
-		if (actual_time - philo[i].last_meal > infos->ttdie)
+		pthread_mutex_lock(&infos->eat);
+		if (ft_time() - philo[i].last_meal > infos->ttdie)
 		{
-			print_time("died", actual_time, &philo[i], infos);
+			print_time("died", ft_time() - infos->start_time, &philo[i],
+					infos);
 			return (1);
 		}
+		pthread_mutex_unlock(&infos->eat);
 		i++;
 	}
 	if (full_meal == infos->max_eat && check_state(infos) == 0)
@@ -52,16 +54,12 @@ int check_philo(t_philo *philo, t_infos *infos)
 
 static void	return_is_end(t_infos *infos, t_philo *philo)
 {		
-	int	i;
 	int	meal_done;
-
+	
 	while (check_state(infos) == 0)
 	{
-		i = 0;
-			while (i < infos->nb_philo)
-			{
 				meal_done = 0;
-				meal_done = check_philo(&philo[i], infos);
+				meal_done = check_philo(philo, infos);
 				if (meal_done == -1)
 				{
 					pthread_mutex_lock(&infos->state_check);
@@ -70,13 +68,12 @@ static void	return_is_end(t_infos *infos, t_philo *philo)
 				}
 				else if (meal_done == infos->max_eat && check_state(infos) == 1)
 				{
+					pthread_mutex_unlock(&infos->eat);
 					pthread_mutex_lock(&infos->state_check);
 					infos->state = 1;
 					pthread_mutex_lock(&infos->state_check);
 				}
-				usleep(50);
-				i++;
-			}
+		usleep(50);
 	}
 	return ;
 }
