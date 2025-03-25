@@ -6,19 +6,21 @@
 #    By: natgomali <marvin@42.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 16:09:21 by natgomali         #+#    #+#              #
-#    Updated: 2025/03/20 16:31:26 by natgomali        ###   ########.fr        #
+#    Updated: 2025/03/24 16:43:48 by natgomali        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OBJDIR 			= obj
 
-SRCS 			=	srcs/main.c srcs/parsing.c srcs/utils.c \
+SRCS 			=	srcs/main.c srcs/parsing.c srcs/utils.c srcs/utils_philo.c\
+					srcs/init_philo.c srcs/routine.c srcs/forks.c \
+					srcs/clean_exit.c \
 
 OBJS 			=	$(patsubst %.c,${OBJDIR}/%.o,$(notdir ${SRCS}))
 
 NAME			=	philosophers
 
-CFLAGS			=	-Wall -Werror -Wextra -g3
+CFLAGS			=	-Wall -Werror -Wextra -fsanitize=thread -g3
 
 ${NAME}			:	${OBJDIR} ${OBJS}
 					@cc ${OBJS} ${CFLAGS} -o ${NAME} -lpthread

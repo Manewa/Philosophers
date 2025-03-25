@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:49:21 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/24 12:52:11 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/24 17:02:17 by natgomali        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ void ft_eat(t_infos *infos, t_philo *philo)
 	long	time;
 
 	time = ft_time();
-
+	take_forks(philo, infos);
+	pthread_mutex_lock(&infos->eat);
+	philo->last_meal = time;
+	philo->nb_meal += 1;
+	print_time("is eating", time - philo->start, philo, infos);
+	ft_usleep(time, infos->tteat, infos);
+	ft_forks_down(philo);
+	pthread_mutex_unlock(&infos->eat);
 }
 
 void ft_sleep(t_infos *infos, t_philo *philo)
@@ -36,7 +43,7 @@ void ft_think(t_infos *infos, t_philo *philo)
 	time = ft_time();
 	print_time("is thinking", time - philo->start, philo, infos);
 	if (infos->nb_philo % 2 == 0)
-		ft_usleep(time, infos->tthink, infos);
+		ft_usleep(time, infos->ttthink, infos);
 	else
 		usleep(100);
 }

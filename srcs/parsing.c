@@ -12,6 +12,30 @@
 
 #include "../includes/philosophers.h"
 
+void check_args(t_infos *infos, int argc)
+{
+	if (infos->nb_philo < 0)
+	{
+		free(infos);
+		ft_putstr_exit("Error: At least one philosopher is needed\n", 2);
+	}
+	else if (infos->ttdie < 1 || infos->tteat < 1 || infos->ttsleep < 1)
+	{
+		free(infos);
+		ft_putstr_exit("Error: No time can be below 1\n", 2);
+	}
+	else if (infos->nb_philo > 200)
+	{
+		free(infos);
+		ft_putstr_exit("Error: Too much philosophers (200)\n", 2);
+	}
+	else if (argc == 6 && infos->max_eat < 1)
+	{
+		free(infos);
+		ft_putstr_exit("Error: Philosophers need at least one meal\n", 2);
+	}
+}
+
 static void check_numbers(char **argv)
 {
 	size_t	i;
