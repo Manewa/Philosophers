@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:55:44 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/24 15:55:29 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/26 17:16:11 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_infos
 	int				max_eat;
 	pthread_mutex_t write;
 	pthread_mutex_t eat;
-	pthread_mutex_t eat_check;
+	//pthread_mutex_t eat_check;
 	pthread_mutex_t	init;
 	pthread_mutex_t	state_check;
 	pthread_mutex_t	time;

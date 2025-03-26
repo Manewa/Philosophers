@@ -68,7 +68,15 @@ void print_time(char *str, long time, t_philo *philo, t_infos *infos)
 {
 	pthread_mutex_lock(&infos->state_check);
 	pthread_mutex_lock(&infos->write);
-	printf("%ld %d %s\n", time, philo->name, str);
+	if (infos->state == 0)
+		printf("%ld %d %s\n", time, philo->name, str);
 	pthread_mutex_unlock(&infos->state_check);
+	pthread_mutex_unlock(&infos->write);
+}
+
+void print_die(long time, t_philo *philo, t_infos *infos)
+{
+	pthread_mutex_lock(&infos->write);
+	printf("%ld %d died\n", time, philo->name);
 	pthread_mutex_unlock(&infos->write);
 }

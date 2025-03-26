@@ -32,6 +32,7 @@ t_infos	*ft_parsing(int argc, char **argv);
 int	ft_atoi(const char *str);
 void	ft_putstr_exit(char *s, int fd);
 void print_time(char *str, long time, t_philo *philo, t_infos *infos);
+void print_die(long time, t_philo *philo, t_infos *infos);
 
 /*** utils_philo.c ***/
 

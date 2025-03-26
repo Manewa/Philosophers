@@ -23,7 +23,7 @@ t_infos	*ft_infonew(char **argv, int argc)
 	check_args(infos, argc);
 	pthread_mutex_init(&infos->write, NULL);
 	pthread_mutex_init(&infos->eat, NULL);
-	pthread_mutex_init(&infos->eat_check, NULL);
+	//pthread_mutex_init(&infos->eat_check, NULL);
 	pthread_mutex_init(&infos->init, NULL);
 	pthread_mutex_init(&infos->state_check, NULL);
 	pthread_mutex_init(&infos->time, NULL);

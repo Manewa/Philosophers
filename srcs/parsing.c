@@ -27,7 +27,7 @@ void check_args(t_infos *infos, int argc)
 	else if (infos->nb_philo > 200)
 	{
 		free(infos);
-		ft_putstr_exit("Error: Too much philosophers (200)\n", 2);
+		ft_putstr_exit("Error: Too much philosophers (+200)\n", 2);
 	}
 	else if (argc == 6 && infos->max_eat < 1)
 	{
