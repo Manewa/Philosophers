@@ -33,7 +33,6 @@ int	check_philo(t_philo *philo, t_infos *infos)
 	full_meal = 0;
 	while (i < infos->nb_philo)
 	{
-		full_meal += meal_philo_done(&philo[i], infos);
 		pthread_mutex_lock(&infos->eat);
 		if (ft_time() - philo[i].last_meal >= infos->ttdie)
 		{
@@ -41,7 +40,9 @@ int	check_philo(t_philo *philo, t_infos *infos)
 			return (1);
 		}
 		pthread_mutex_unlock(&infos->eat);
+		full_meal += meal_philo_done(&philo[i], infos);
 		i++;
+		usleep(100);
 	}
 	if (full_meal == infos->nb_philo)
 		return (-1);
@@ -69,7 +70,7 @@ static void	return_is_end(t_infos *infos, t_philo *philo)
 			pthread_mutex_unlock(&infos->state_check);
 			pthread_mutex_unlock(&infos->eat);
 		}
-		usleep(50);
+		usleep(100);
 	}
 	return ;
 }

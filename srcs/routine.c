@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:49:21 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/27 13:17:36 by namalier         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:42:28 by natgomali        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	ft_sleep(t_infos *infos, t_philo *philo)
 void	ft_think(t_infos *infos, t_philo *philo)
 {
 	print_time("is thinking", ft_time() - philo->start, philo, infos);
-	if (infos->nb_philo % 2)
+//	if (infos->nb_philo % 2)
 		ft_usleep(ft_time(), infos->ttthink, infos);
-	else
-		usleep(100);
+//	else
+//		usleep(100);
 }
 
 void	*ft_routine(void *args)
