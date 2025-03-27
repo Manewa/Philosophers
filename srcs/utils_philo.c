@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_philo.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/27 13:15:05 by namalier          #+#    #+#             */
+/*   Updated: 2025/03/27 13:39:52 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philosophers.h"
 
 t_infos	*ft_infonew(char **argv, int argc)
@@ -5,7 +17,7 @@ t_infos	*ft_infonew(char **argv, int argc)
 	t_infos	*infos;
 
 	infos = malloc(sizeof(t_infos));
-	if(!infos)
+	if (!infos)
 		exit(2);
 	infos->nb_philo = ft_atoi(argv[1]);
 	infos->ttdie = ft_atoi(argv[2]);
@@ -21,16 +33,11 @@ t_infos	*ft_infonew(char **argv, int argc)
 	else
 		infos->ttthink = infos->ttsleep - 2 * infos->tteat;
 	check_args(infos, argc);
-	pthread_mutex_init(&infos->write, NULL);
-	pthread_mutex_init(&infos->eat, NULL);
-	//pthread_mutex_init(&infos->eat_check, NULL);
-	pthread_mutex_init(&infos->init, NULL);
-	pthread_mutex_init(&infos->state_check, NULL);
-	pthread_mutex_init(&infos->time, NULL);
-	return(infos);
+	init_mutex_infos(infos);
+	return (infos);
 }
 
-long ft_time(void)
+long	ft_time(void)
 {
 	struct timeval	time;
 
@@ -61,7 +68,7 @@ int	check_state(t_infos *infos)
 	return (state);
 }
 
-void ft_usleep(long start, long wait, t_infos *infos)
+void	ft_usleep(long start, long wait, t_infos *infos)
 {
 	long	current;
 	long	time_left;

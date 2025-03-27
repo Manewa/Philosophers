@@ -6,13 +6,13 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 14:46:59 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/26 19:35:55 by namalier         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:18:58 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void ft_clean_philo(t_philo *philo, t_infos *infos)
+void	ft_clean_philo(t_philo *philo, t_infos *infos)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ void ft_clean_philo(t_philo *philo, t_infos *infos)
 	free(philo);
 }
 
-void ft_clean_exit(t_philo *philo, t_infos *infos)
+void	ft_clean_exit(t_philo *philo, t_infos *infos)
 {
 	ft_clean_philo(philo, infos);
 	pthread_mutex_destroy(&infos->write);
@@ -39,4 +39,3 @@ void ft_clean_exit(t_philo *philo, t_infos *infos)
 	pthread_mutex_destroy(&infos->state_check);
 	free(infos);
 }
-

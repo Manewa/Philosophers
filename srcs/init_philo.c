@@ -6,20 +6,20 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 11:34:48 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/26 17:16:47 by namalier         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:18:41 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static void ft_init_forks(t_philo *philo, int i)
+static void	ft_init_forks(t_philo *philo, int i)
 {
 	pthread_mutex_init(&philo[i].fork_r, NULL);
 	if (i > 0)
 		philo[i].fork_l = &philo[i - 1].fork_r;
 }
 
-t_philo *init_philo(t_infos *infos)
+t_philo	*init_philo(t_infos *infos)
 {
 	t_philo	*philo;
 	int		i;

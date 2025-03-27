@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   forks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: namalier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/27 13:17:45 by namalier          #+#    #+#             */
+/*   Updated: 2025/03/27 13:18:18 by namalier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philosophers.h"
 
-static void odd_forks(t_philo *philo, t_infos *infos)
+static void	odd_forks(t_philo *philo, t_infos *infos)
 {
 	pthread_mutex_lock(&philo->fork_r);
 	print_time("has taken a fork", ft_time() - philo->start, philo, infos);
@@ -19,7 +31,7 @@ static void odd_forks(t_philo *philo, t_infos *infos)
 	}
 }
 
-void take_forks(t_philo *philo, t_infos *infos)
+void	take_forks(t_philo *philo, t_infos *infos)
 {
 	if (philo->name % 2 == 0)
 	{
@@ -29,7 +41,7 @@ void take_forks(t_philo *philo, t_infos *infos)
 		print_time("has taken a fork", ft_time() - philo->start, philo, infos);
 	}
 	else
-        odd_forks(philo, infos);
+		odd_forks(philo, infos);
 }
 
 void	ft_forks_down(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:04:03 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/24 15:42:58 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/27 13:14:37 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_putstr_exit(char *s, int fd)
 	exit(2);
 }
 
-void print_time(char *str, long time, t_philo *philo, t_infos *infos)
+void	print_time(char *str, long time, t_philo *philo, t_infos *infos)
 {
 	pthread_mutex_lock(&infos->state_check);
 	pthread_mutex_lock(&infos->write);
@@ -74,7 +74,7 @@ void print_time(char *str, long time, t_philo *philo, t_infos *infos)
 	pthread_mutex_unlock(&infos->write);
 }
 
-void print_die(long time, t_philo *philo, t_infos *infos)
+void	print_die(long time, t_philo *philo, t_infos *infos)
 {
 	pthread_mutex_lock(&infos->write);
 	printf("%ld %d died\n", time, philo->name);

@@ -6,13 +6,13 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:23:55 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/25 18:26:21 by namalier         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:14:53 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void check_args(t_infos *infos, int argc)
+void	check_args(t_infos *infos, int argc)
 {
 	if (infos->nb_philo < 0)
 	{
@@ -36,7 +36,7 @@ void check_args(t_infos *infos, int argc)
 	}
 }
 
-static void check_numbers(char **argv)
+static void	check_numbers(char **argv)
 {
 	size_t	i;
 	size_t	j;
