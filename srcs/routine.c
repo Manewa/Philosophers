@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:49:21 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/27 21:42:28 by natgomali        ###   ########.fr       */
+/*   Updated: 2025/03/28 14:40:41 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@ void	ft_eat(t_infos *infos, t_philo *philo)
 	pthread_mutex_lock(&infos->eat);
 	philo->last_meal = ft_time();
 	pthread_mutex_unlock(&infos->eat);
-	pthread_mutex_lock(&infos->eat_check);
 	philo->nb_meal += 1;
-	pthread_mutex_unlock(&infos->eat_check);
 	print_time("is eating", ft_time() - philo->start, philo, infos);
 	ft_usleep(ft_time(), infos->tteat, infos);
+	if (infos->max_eat > 0)
+	{
+		if (philo->nb_meal >= infos->max_eat)
+		{
+			pthread_mutex_lock(&infos->eat_check);
+			philo->state = 1;
+			pthread_mutex_unlock(&infos->eat_check);
+		}
+	}
 	ft_forks_down(philo);
 }
 
@@ -35,10 +42,10 @@ void	ft_sleep(t_infos *infos, t_philo *philo)
 void	ft_think(t_infos *infos, t_philo *philo)
 {
 	print_time("is thinking", ft_time() - philo->start, philo, infos);
-//	if (infos->nb_philo % 2)
+	if (infos->nb_philo % 2)
 		ft_usleep(ft_time(), infos->ttthink, infos);
-//	else
-//		usleep(100);
+	else
+		usleep(100);
 }
 
 void	*ft_routine(void *args)
@@ -52,9 +59,8 @@ void	*ft_routine(void *args)
 	philo->start = ft_time();
 	pthread_mutex_unlock(&infos->init);
 	if (philo->name % 2 == 0)
-		ft_think(infos, philo);
-	else if (philo->name == 1 && infos->nb_philo % 2 != 0
-		&& infos->nb_philo != 1)
+		ft_usleep(ft_time(), infos->tteat / 2, infos);
+	else if (infos->nb_philo != 1 && philo->name == 1)
 		ft_usleep(philo->start, infos->tteat, infos);
 	while (check_state(infos) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: natgomali <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:55:49 by natgomali         #+#    #+#             */
-/*   Updated: 2025/03/27 13:50:45 by namalier         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:41:18 by namalier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_mutex_infos(t_infos *infos);
 t_infos	*ft_infonew(char **argv, int argc);
 long	ft_time(void);
 void	set_time_all(t_philo *philo, t_infos *infos);
-int		check_state(t_infos *infos);
 void	ft_usleep(long start, long wait, t_infos *infos);
+int		check_state(t_infos *infos);
 
 /*** init_philo.c ***/
 
